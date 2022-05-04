@@ -1,0 +1,38 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+ProductsList|length
+{% endblock title %}
+ProductsList
+
+{% block content %}
+   <h1>Все посты: {{ products|length }} </h1>
+   <h3>{{ time_now|date:'M d Y' }}</h3>
+   <h3>{{ quansity }}</h3>
+   <hr>
+   {% if products %}
+       <table>
+           <tr>
+               <td>Заголовок</td>
+               <td>дата</td>
+               <td>Текст</td>
+           </tr>
+
+           {% for product in products %}
+           <tr>
+               <td>{{ product.title|censor }}</td>
+                <!-- Добавим специальный фильтр truncatechars,
+                чтобы ограничить количество символов до 15.
+                Все остальные символы превратятся в многоточие. -->
+               <td>{{ product.daterimePost }}</td>
+               <td>{{ product.text|truncatechars:20|censor }}</td>
+           </tr>
+           {% endfor %}
+
+       </table>
+   {% else %}
+       <h2>Товаров нет!</h2>
+   {% endif %}
+{% endblock content %}
