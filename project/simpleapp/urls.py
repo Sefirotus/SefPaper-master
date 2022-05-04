@@ -1,6 +1,6 @@
 from django.urls import path
 # Импортируем созданные нами представления
-from .views import ProductsList, ProductDetail
+from .views import ProductsList, ProductDetail, ProductsSearch
 
 urlpatterns = [
    # path — означает путь.
@@ -12,4 +12,6 @@ urlpatterns = [
    # pk — это первичный ключ товара, который будет выводиться у нас в шаблон
    # int — указывает на то, что принимаются только целочисленные значения
    path('<int:pk>', ProductDetail.as_view()),
+   path('search/', ProductsSearch.as_view()),
+
 ]
