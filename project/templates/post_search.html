@@ -2,16 +2,23 @@
 
 {% load custom_filters %}
 {% load custom_tags %}
+
 {% block title %}
-ProductsList|length
+PostsList|length
 {% endblock title %}
-ProductsList
+PostListgfh
 
 {% block content %}
-
-   <h1>Все посты: {{ products|length }} </h1>
+    {# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}
+   <form action="" method="get">
+       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+       {{ filterset.form.as_p }}
+       {# Добавим кнопку отправки данных формы #}
+       HTML Demo: <input type="date">
+       <input type="submit" value="Найти" />
+   </form>
+   <h1>Нашлось Постов: {{ products|length }} </h1>
    <h3>Сегодня {% current_time '%b %d %Y' %}</h3>
-   <h3>{{ next_sale|default_if_none:"Чуть позже сообщим о распродаже!" }} </h3>
    <hr>
    {% if products %}
        <table>
@@ -34,7 +41,7 @@ ProductsList
 
        </table>
    {% else %}
-       <h2>Таких Постов нет!</h2>
+       <h2>Таких постов нет!</h2>
    {% endif %}
 
   {% if page_obj.has_previous %}
