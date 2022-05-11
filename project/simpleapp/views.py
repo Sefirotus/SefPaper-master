@@ -2,8 +2,10 @@ from django.shortcuts import render
 from datetime import datetime
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
 from .filters import PostFilter
-from .forms import PostForm
+from .forms import PostForm, UserForm
 from .models import Post
 from pprint import pprint
 
@@ -104,3 +106,11 @@ class PostDelete(DeleteView):
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('products')
+
+class UserEdit(LoginRequiredMixin, UpdateView):
+    template_name = 'user_edit.html'
+    form_class = UserForm
+    success_url = '/news/'
+
+    def get_object(self, **kwargs):
+        return self.request.user

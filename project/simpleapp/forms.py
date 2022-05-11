@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, PostCategory, Category
+from .models import Post, PostCategory, Category, User
 
 
 
@@ -28,3 +28,8 @@ class PostForm(forms.ModelForm):
 
        return cleaned_data
 
+class UserForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
