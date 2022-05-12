@@ -88,7 +88,8 @@ class PostsSearch(ListView):
         return context
 
 # Добавляем новое представление для создания товаров.
-class PostCreate(CreateView):
+class PostCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('simpleapp.add_post',)
     # Указываем нашу разработанную форму
     form_class = PostForm
     # модель товаров
@@ -96,13 +97,15 @@ class PostCreate(CreateView):
     # и новый шаблон, в котором используется форма.
     template_name = 'post_edit.html'
 
-class PostEdit(UpdateView):
+class PostEdit(PermissionRequiredMixin ,UpdateView):
+    permission_required = ('simpleapp.change_post',)
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
 
 # Представление удаляющее товар.
-class PostDelete(DeleteView):
+class PostDelete(PermissionRequiredMixin ,DeleteView):
+    permission_required = ('simpleapp.delete_post')
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('products')
