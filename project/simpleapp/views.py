@@ -2,7 +2,7 @@ from django.shortcuts import render
 from datetime import datetime
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import TemplateView
 from .filters import PostFilter
 from .forms import PostForm, UserForm
