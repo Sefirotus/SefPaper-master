@@ -23,5 +23,8 @@ urlpatterns = [
    # Делаем так, чтобы все адреса из нашего приложения (simpleapp/urls.py)
    # подключались к главному приложению с префиксом products/.
    path('news/', include('simpleapp.urls')),
+   path('', include('protect.urls')),
+   path('sign/', include('sign.urls')),
+   path('accounts/', include('allauth.urls')),
  #  path('news/', include('news.urls')),
 ]
